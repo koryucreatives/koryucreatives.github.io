@@ -2,7 +2,7 @@
 
 import { Resend } from "resend";
 
-const CONTACT_EMAIL = "koryucreatives@gmail.com";
+const CONTACT_EMAIL = "contactus@koryucreatives.com";
 
 type ContactPayload = {
   name: string;
@@ -22,7 +22,7 @@ export async function sendContactEmail(data: ContactPayload) {
 
   try {
     const { error } = await resend.emails.send({
-      from: "KORYU Creatives <onboarding@resend.dev>",
+      from: "KORYU Creatives <contactus@koryucreatives.com>",
       to: CONTACT_EMAIL,
       replyTo: data.email,
       subject: `New inquiry from ${data.name} (${data.businessType})`,

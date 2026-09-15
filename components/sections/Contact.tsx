@@ -104,11 +104,11 @@ export default function Contact() {
                 <div>
                   <span className="label">Email</span>
                   <a
-                    href="mailto:koryucreatives@gmail.com"
+                    href="mailto:contactus@koryucreatives.com"
                     data-cursor="link"
                     className="mt-2 block text-lg text-ink-200 transition-colors hover:text-ink-50"
                   >
-                    koryucreatives@gmail.com
+                    contactus@koryucreatives.com
                   </a>
                 </div>
                 <div>
@@ -282,8 +282,8 @@ export default function Contact() {
                     {status === "error" && (
                       <p role="alert" className="text-sm text-red-400">
                         Something went wrong sending that. Please try again, or email us directly at{" "}
-                        <a href="mailto:koryucreatives@gmail.com" className="underline">
-                          koryucreatives@gmail.com
+                        <a href="mailto:contactus@koryucreatives.com" className="underline">
+                          contactus@koryucreatives.com
                         </a>
                         .
                       </p>
