@@ -19,13 +19,13 @@ const FOUNDING_PERKS: FoundingPerk[] = [
     number: "02",
     title: "Founding-rate pricing",
     description:
-      "Locked-in rates that reflect where we are now — not what we'll charge once we're at capacity.",
+      "Locked-in rates that reflect where we are now, not what we'll charge once we're at capacity.",
   },
   {
     number: "03",
     title: "First case study featured on this site",
     description:
-      "Your results become the proof we don't have yet — front and center, with your permission.",
+      "Your results become the proof we don't have yet, front and center, with your permission.",
   },
   {
     number: "04",
@@ -55,7 +55,7 @@ export default function Work() {
           </div>
           <Reveal delay={0.1}>
             <p className="max-w-xs text-sm text-ink-500">
-              We&rsquo;re a new studio — no invented metrics, no borrowed case
+              We&rsquo;re a new studio: no invented metrics, no borrowed case
               studies. Our first clients get hands-on, high-attention work at
               founding pricing, and in exchange we ask to feature the results
               as our first case studies.

@@ -5,11 +5,11 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 const POINTS = [
   {
     title: "One team, zero guesswork",
-    copy: "The people building your site talk daily to the people shooting your content and running your ads — because they're the same team, not five inboxes you're managing yourself.",
+    copy: "The people building your site talk daily to the people shooting your content and running your ads, because they're the same team, not five inboxes you're managing yourself.",
   },
   {
     title: "One story, every platform",
-    copy: "Your website, your feed, your ads, and your video all sound and look like they came from the same business — because they did.",
+    copy: "Your website, your feed, your ads, and your video all sound and look like they came from the same business, because they did.",
   },
   {
     title: "Built to compound",

@@ -59,7 +59,7 @@ export default function Navbar() {
               handleNavClick("top");
             }}
             className="flex items-center gap-3"
-            aria-label="KORYU Creatives — back to top"
+            aria-label="KORYU Creatives, back to top"
           >
             <Image
               src="/images/logo/koryu-mark.png"

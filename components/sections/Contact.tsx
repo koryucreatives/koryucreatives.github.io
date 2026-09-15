@@ -91,7 +91,7 @@ export default function Contact() {
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-md leading-relaxed text-ink-400">
                 Tell us where things stand today. We&rsquo;ll follow up with a
-                straightforward read on what your digital presence needs —
+                straightforward read on what your digital presence needs:
                 no jargon, no pressure.
               </p>
             </Reveal>
@@ -164,7 +164,7 @@ export default function Contact() {
                       Message sent.
                     </h3>
                     <p className="mt-3 max-w-sm text-ink-400">
-                      Thanks for reaching out — we&rsquo;ll get back to you
+                      Thanks for reaching out. We&rsquo;ll get back to you
                       within one business day.
                     </p>
                     <button

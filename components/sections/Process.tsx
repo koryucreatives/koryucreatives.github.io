@@ -14,7 +14,7 @@ const STEPS = [
   },
   {
     title: "Build",
-    copy: "Our team builds the site, shoots and edits the content, and sets up the ad campaigns — in parallel, not in sequence.",
+    copy: "Our team builds the site, shoots and edits the content, and sets up the ad campaigns: in parallel, not in sequence.",
   },
   {
     title: "Launch",
@@ -22,7 +22,7 @@ const STEPS = [
   },
   {
     title: "Grow",
-    copy: "We keep watching the numbers, refining the content, and optimizing ad spend — month over month, not set-and-forget.",
+    copy: "We keep watching the numbers, refining the content, and optimizing ad spend: month over month, not set-and-forget.",
   },
 ];
 

@@ -24,11 +24,11 @@ const siteUrl = "https://koryucreatives.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "KORYU Creatives — Digital Transformation, Told as One Story",
-    template: "%s — KORYU Creatives",
+    default: "KORYU Creatives: Digital Transformation, Told as One Story",
+    template: "%s - KORYU Creatives",
   },
   description:
-    "KORYU Creatives is a full-service digital transformation agency — website design & development, content creation, video editing, and paid ad management, built by one team as a single cohesive story.",
+    "KORYU Creatives is a full-service digital transformation agency: website design and development, content creation, video editing, and paid ad management, built by one team as a single, cohesive story.",
   keywords: [
     "digital agency",
     "website design",
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     "brand identity",
   ],
   openGraph: {
-    title: "KORYU Creatives — Digital Transformation, Told as One Story",
+    title: "KORYU Creatives: Digital Transformation, Told as One Story",
     description:
-      "One team. One story. Website, content, video, and paid ads — built together, not fragmented across five freelancers.",
+      "One team. One story. Website, content, video, and paid ads, built together, not fragmented across five freelancers.",
     url: siteUrl,
     siteName: "KORYU Creatives",
     locale: "en_US",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "KORYU Creatives — Digital Transformation, Told as One Story",
+    title: "KORYU Creatives: Digital Transformation, Told as One Story",
     description:
-      "One team. One story. Website, content, video, and paid ads — built together, not fragmented across five freelancers.",
+      "One team. One story. Website, content, video, and paid ads, built together, not fragmented across five freelancers.",
   },
   robots: {
     index: true,
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#0b1220",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,

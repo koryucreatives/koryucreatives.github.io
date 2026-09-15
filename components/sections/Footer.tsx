@@ -63,7 +63,7 @@ export default function Footer() {
 
       <div className="mx-auto mt-12 flex max-w-content flex-col gap-2 border-t border-ink-50/10 pt-8 text-xs text-ink-600 sm:flex-row sm:items-center sm:justify-between">
         <p>&copy; {year} KORYU Creatives. All rights reserved.</p>
-        <p>Website design & development, content, video, and paid ads — one team.</p>
+        <p>Website design and development, content, video, and paid ads. One team.</p>
       </div>
     </footer>
   );

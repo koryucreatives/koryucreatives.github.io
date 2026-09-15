@@ -57,7 +57,7 @@ export default function Hero() {
           className="mt-8 max-w-xl text-balance text-base text-ink-300 sm:text-lg"
         >
           You built something worth trusting. We make sure the internet
-          knows it — your website, content, video, and ads, built by one
+          knows it: your website, content, video, and ads, built by one
           team as a single, cohesive story.
         </motion.p>
 

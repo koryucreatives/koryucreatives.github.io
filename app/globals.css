@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #0a0a0a;
-  --color-fg: #fafafa;
+  --color-bg: #0b1220;
+  --color-fg: #f7f0de;
 }
 
 * {
@@ -38,13 +38,13 @@ h4 {
 }
 
 ::selection {
-  background: #fafafa;
-  color: #0a0a0a;
+  background: #f7f0de;
+  color: #0b1220;
 }
 
 /* Keyboard focus states — always visible, never suppressed */
 :focus-visible {
-  outline: 1px solid #fafafa;
+  outline: 1px solid #f7f0de;
   outline-offset: 4px;
 }
 
@@ -62,7 +62,7 @@ h4 {
   letter-spacing: 0.35em;
   font-size: 0.6875rem;
   font-weight: 500;
-  color: #868686;
+  color: #a79e85;
 }
 
 /* Grain texture overlay — CSS-only, no image asset */

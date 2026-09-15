@@ -10,11 +10,11 @@ import {
 import { Reveal } from "@/components/ui/Reveal";
 
 const PARAGRAPHS = [
-  "You're good at what you do. Really good — good enough that most of your business still comes from word of mouth, from people who found you once and never looked anywhere else.",
-  `But the next customer doesn't work that way. Before they call, before they walk in, they check. They search your name, glance at your site, scroll your last few posts — and in about the time it takes to blink, they've decided whether you're a business worth trusting. That's your "digital footprint": simply, the impression you leave everywhere someone can find you online, whether you're managing it or not.`,
-  "A lot of business owners assume that doesn't apply to them — that their trade is too hands-on, too local, too old-school for any of this to matter. And then a competitor with half their experience opens down the street with a clean website and an active page, and starts winning the customers who were never going to call a number with no website attached to it.",
-  "Some of you have already tried to fix this. A freelancer for the logo. Another for the website. A cousin who \"does social media\" who posted six times last spring and then disappeared. None of them were in the room together, so none of it looks or sounds like it came from the same business — what's usually called \"brand consistency,\" meaning your site, your page, and your ads all actually agree on who you are.",
-  "The cost of that isn't dramatic. It's quiet. It's the customer who almost called, checked your page, saw nothing recent, and kept scrolling — straight to the competitor who simply showed up.",
+  "You're good at what you do. Really good: good enough that most of your business still comes from word of mouth, from people who found you once and never looked anywhere else.",
+  `But the next customer doesn't work that way. Before they call, before they walk in, they check. They search your name, glance at your site, scroll your last few posts, and in about the time it takes to blink, they've decided whether you're a business worth trusting. That's your "digital footprint": simply, the impression you leave everywhere someone can find you online, whether you're managing it or not.`,
+  "A lot of business owners assume that doesn't apply to them: that their trade is too hands-on, too local, too old-school for any of this to matter. And then a competitor with half their experience opens down the street with a clean website and an active page, and starts winning the customers who were never going to call a number with no website attached to it.",
+  "Some of you have already tried to fix this. A freelancer for the logo. Another for the website. A cousin who \"does social media\" who posted six times last spring and then disappeared. None of them were in the room together, so none of it looks or sounds like it came from the same business: what's usually called \"brand consistency,\" meaning your site, your page, and your ads all actually agree on who you are.",
+  "The cost of that isn't dramatic. It's quiet. It's the customer who almost called, checked your page, saw nothing recent, and kept scrolling, straight to the competitor who simply showed up.",
 ];
 
 function Beat({ index, text }: { index: number; text: string }) {

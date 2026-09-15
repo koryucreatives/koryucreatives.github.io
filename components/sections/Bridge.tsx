@@ -28,7 +28,7 @@ export default function Bridge() {
             KORYU exists because that gap shouldn&rsquo;t be normal. Instead of
             handing your website to one freelancer, your photos to another,
             and your ad budget to whoever&rsquo;s cheapest this month, one team
-            builds all of it together — so your site, your content, your
+            builds all of it together, so your site, your content, your
             video, and your ads are working from the same brief, not
             guessing at each other from across the internet.
           </p>
@@ -54,7 +54,7 @@ export default function Bridge() {
 
         <Reveal delay={0.1} className="mt-8">
           <p className="text-sm text-ink-500">
-            Four pieces, one narrative — designed, written, and managed by
+            Four pieces, one narrative: designed, written, and managed by
             the same team from day one.
           </p>
         </Reveal>
