@@ -1,7 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion, type Variants } from "framer-motion";
+import { forwardRef, useEffect, useRef, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -17,32 +23,54 @@ const drawVariants: Variants = {
   }),
 };
 
-function VisualFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="h-full w-full p-10 sm:p-14">
-      <div className="relative h-full w-full">
-        <svg
-          viewBox="0 0 400 300"
-          className="absolute inset-0 h-full w-full overflow-visible"
-          fill="none"
-          aria-hidden="true"
-        >
-          {children}
-        </svg>
+const VisualFrame = forwardRef<HTMLDivElement, { children: React.ReactNode }>(
+  function VisualFrame({ children }, ref) {
+    return (
+      <div className="h-full w-full p-10 sm:p-14">
+        <div ref={ref} className="relative h-full w-full">
+          <svg
+            viewBox="0 0 400 300"
+            className="absolute inset-0 h-full w-full overflow-visible"
+            fill="none"
+            aria-hidden="true"
+          >
+            {children}
+          </svg>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+);
+
+/**
+ * Drives the draw-in animation off whichever comes first: the element
+ * actually scrolling into view, or a short fallback timer. Some mobile
+ * browsers can fail to report intersection reliably (dynamic toolbars
+ * resizing the viewport, momentum-scroll timing, etc.), so the timer
+ * guarantees the visual never gets stuck permanently invisible.
+ */
+function useRevealTrigger(fallbackMs = 1000) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.1 });
+  const [forced, setForced] = useState(false);
+
+  useEffect(() => {
+    const id = setTimeout(() => setForced(true), fallbackMs);
+    return () => clearTimeout(id);
+  }, [fallbackMs]);
+
+  return { ref, visible: inView || forced };
 }
 
 /** Website Design & Development — a wireframe layout drawing itself in. */
 export function WebsiteVisual() {
   const shouldReduceMotion = useReducedMotion();
+  const { ref, visible } = useRevealTrigger();
   const initial = shouldReduceMotion ? false : "hidden";
-  const whileInView = shouldReduceMotion ? undefined : "visible";
-  const viewport = { once: true, amount: 0.4 } as const;
+  const animate = shouldReduceMotion ? undefined : visible ? "visible" : "hidden";
 
   return (
-    <VisualFrame>
+    <VisualFrame ref={ref}>
       {/* browser chrome — static */}
       <rect x="30" y="30" width="340" height="240" rx="10" stroke="currentColor" strokeWidth="1.5" className="text-ink-50/15" />
       <line x1="30" y1="64" x2="370" y2="64" stroke="currentColor" strokeWidth="1.5" className="text-ink-50/15" />
@@ -54,31 +82,31 @@ export function WebsiteVisual() {
       <motion.rect
         x="54" y="86" width="120" height="12" rx="2"
         stroke="currentColor" strokeWidth="1.5" className="text-ink-50/70"
-        initial={initial} whileInView={whileInView} viewport={viewport}
+        initial={initial} animate={animate}
         custom={0} variants={drawVariants}
       />
       <motion.rect
         x="54" y="112" width="292" height="64" rx="6"
         stroke="currentColor" strokeWidth="1.5" className="text-ink-50/70"
-        initial={initial} whileInView={whileInView} viewport={viewport}
+        initial={initial} animate={animate}
         custom={1} variants={drawVariants}
       />
       <motion.rect
         x="54" y="192" width="88" height="62" rx="6"
         stroke="currentColor" strokeWidth="1.5" className="text-ink-50/45"
-        initial={initial} whileInView={whileInView} viewport={viewport}
+        initial={initial} animate={animate}
         custom={2} variants={drawVariants}
       />
       <motion.rect
         x="156" y="192" width="88" height="62" rx="6"
         stroke="currentColor" strokeWidth="1.5" className="text-ink-50/45"
-        initial={initial} whileInView={whileInView} viewport={viewport}
+        initial={initial} animate={animate}
         custom={2.25} variants={drawVariants}
       />
       <motion.rect
         x="258" y="192" width="88" height="62" rx="6"
         stroke="currentColor" strokeWidth="1.5" className="text-ink-50/45"
-        initial={initial} whileInView={whileInView} viewport={viewport}
+        initial={initial} animate={animate}
         custom={2.5} variants={drawVariants}
       />
     </VisualFrame>
@@ -98,16 +126,16 @@ const cellVariants: Variants = {
 /** Social Media Photo Editing — a 3x3 content grid with crop marks. */
 export function PhotoGridVisual() {
   const shouldReduceMotion = useReducedMotion();
+  const { ref, visible } = useRevealTrigger();
   const initial = shouldReduceMotion ? false : "hidden";
-  const whileInView = shouldReduceMotion ? undefined : "visible";
-  const viewport = { once: true, amount: 0.4 } as const;
+  const animate = shouldReduceMotion ? undefined : visible ? "visible" : "hidden";
 
   const gap = 14;
   const size = (340 - gap * 2) / 3;
   const tick = 8;
 
   return (
-    <VisualFrame>
+    <VisualFrame ref={ref}>
       {CELLS.map((_, i) => {
         const row = Math.floor(i / 3);
         const col = i % 3;
@@ -118,7 +146,7 @@ export function PhotoGridVisual() {
             <motion.rect
               x={x} y={y} width={size} height={size} rx="4"
               stroke="currentColor" strokeWidth="1.25" className="text-ink-50/45"
-              initial={initial} whileInView={whileInView} viewport={viewport}
+              initial={initial} animate={animate}
               custom={i} variants={cellVariants}
             />
             {/* crop-mark corners */}
@@ -149,9 +177,9 @@ const waveVariants: Variants = {
 /** Video Editing — a waveform timeline with a moving playhead. */
 export function VideoWaveformVisual() {
   const shouldReduceMotion = useReducedMotion();
+  const { ref, visible } = useRevealTrigger();
   const initial = shouldReduceMotion ? false : "hidden";
-  const whileInView = shouldReduceMotion ? undefined : "visible";
-  const viewport = { once: true, amount: 0.4 } as const;
+  const animate = shouldReduceMotion ? undefined : visible ? "visible" : "hidden";
 
   const barWidth = 6;
   const gap = 4;
@@ -160,7 +188,7 @@ export function VideoWaveformVisual() {
   const centerY = 150;
 
   return (
-    <VisualFrame>
+    <VisualFrame ref={ref}>
       <line x1="30" y1={centerY} x2="370" y2={centerY} stroke="currentColor" strokeWidth="1" className="text-ink-50/15" />
 
       {BAR_HEIGHTS.map((h, i) => {
@@ -171,13 +199,13 @@ export function VideoWaveformVisual() {
             x={x} y={centerY - h / 2} width={barWidth} height={h} rx="2"
             fill="currentColor" className="text-ink-50/55"
             style={{ transformOrigin: `${x + barWidth / 2}px ${centerY}px` }}
-            initial={initial} whileInView={whileInView} viewport={viewport}
+            initial={initial} animate={animate}
             custom={i} variants={waveVariants}
           />
         );
       })}
 
-      {!shouldReduceMotion && (
+      {!shouldReduceMotion && visible && (
         <motion.g
           initial={{ x: startX }}
           animate={{ x: startX + totalWidth }}
@@ -203,9 +231,9 @@ const barGrowVariants: Variants = {
 /** Paid Ad Management — a rising bar chart with a drawn trend line. */
 export function AdGrowthVisual() {
   const shouldReduceMotion = useReducedMotion();
+  const { ref, visible } = useRevealTrigger();
   const initial = shouldReduceMotion ? false : "hidden";
-  const whileInView = shouldReduceMotion ? undefined : "visible";
-  const viewport = { once: true, amount: 0.4 } as const;
+  const animate = shouldReduceMotion ? undefined : visible ? "visible" : "hidden";
 
   const barWidth = 26;
   const gap = 12;
@@ -221,8 +249,21 @@ export function AdGrowthVisual() {
   });
   const [lastX, lastY] = points[points.length - 1].split(",");
 
+  const lineInitial = shouldReduceMotion ? false : { pathLength: 0, opacity: 0 };
+  const lineAnimate = shouldReduceMotion
+    ? undefined
+    : visible
+    ? { pathLength: 1, opacity: 1 }
+    : { pathLength: 0, opacity: 0 };
+  const dotInitial = shouldReduceMotion ? false : { opacity: 0, scale: 0 };
+  const dotAnimate = shouldReduceMotion
+    ? undefined
+    : visible
+    ? { opacity: 1, scale: 1 }
+    : { opacity: 0, scale: 0 };
+
   return (
-    <VisualFrame>
+    <VisualFrame ref={ref}>
       <line x1="30" y1={baseY} x2="370" y2={baseY} stroke="currentColor" strokeWidth="1" className="text-ink-50/15" />
 
       {AD_BARS.map((h, i) => {
@@ -235,7 +276,7 @@ export function AdGrowthVisual() {
             x={x} y={y} width={barWidth} height={barH} rx="2"
             fill="currentColor" className="text-ink-50/20"
             style={{ transformOrigin: `${x + barWidth / 2}px ${baseY}px` }}
-            initial={initial} whileInView={whileInView} viewport={viewport}
+            initial={initial} animate={animate}
             custom={i} variants={barGrowVariants}
           />
         );
@@ -245,16 +286,14 @@ export function AdGrowthVisual() {
         points={points.join(" ")}
         stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
         className="text-ink-50"
-        initial={shouldReduceMotion ? false : { pathLength: 0, opacity: 0 }}
-        whileInView={shouldReduceMotion ? undefined : { pathLength: 1, opacity: 1 }}
-        viewport={viewport}
+        initial={lineInitial}
+        animate={lineAnimate}
         transition={{ duration: 1.1, delay: 0.3, ease: EASE }}
       />
       <motion.circle
         cx={lastX} cy={lastY} r="4" fill="currentColor" className="text-ink-50"
-        initial={shouldReduceMotion ? false : { opacity: 0, scale: 0 }}
-        whileInView={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
-        viewport={viewport}
+        initial={dotInitial}
+        animate={dotAnimate}
         transition={{ duration: 0.3, delay: 1.3 }}
       />
     </VisualFrame>
