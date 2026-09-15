@@ -19,15 +19,17 @@ const drawVariants: Variants = {
 
 function VisualFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-full w-full items-center justify-center p-10 sm:p-14">
-      <svg
-        viewBox="0 0 400 300"
-        className="h-full w-full overflow-visible"
-        fill="none"
-        aria-hidden="true"
-      >
-        {children}
-      </svg>
+    <div className="h-full w-full p-10 sm:p-14">
+      <div className="relative h-full w-full">
+        <svg
+          viewBox="0 0 400 300"
+          className="absolute inset-0 h-full w-full overflow-visible"
+          fill="none"
+          aria-hidden="true"
+        >
+          {children}
+        </svg>
+      </div>
     </div>
   );
 }
