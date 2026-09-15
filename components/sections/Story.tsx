@@ -127,7 +127,11 @@ function MobileBeat({ heading, text }: { heading: string; text: string }) {
             ? undefined
             : { scale: dotScale, opacity: dotOpacity }
         }
-        className="absolute left-[3px] top-2 h-2 w-2 -translate-x-1/2 rounded-full bg-ink-50"
+        // Must match the mobile line's rendered center exactly: the line svg
+        // below is positioned at left-[4px] with a 2px-wide viewBox="0 0 2 100"
+        // and drawn at x="1" (the viewBox's midpoint), so its true center is
+        // 4px + 1px = 5px from the container edge, not the svg's own left-4px.
+        className="absolute left-[5px] top-2 h-2 w-2 -translate-x-1/2 rounded-full bg-ink-50"
       />
       <motion.div style={shouldReduceMotion ? undefined : { opacity, y }}>
         <h3 className="font-display text-lg font-medium text-ink-50">
