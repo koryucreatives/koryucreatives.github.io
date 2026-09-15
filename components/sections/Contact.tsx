@@ -5,10 +5,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
 import { Reveal } from "@/components/ui/Reveal";
 import MagneticButton from "@/components/ui/MagneticButton";
+import { sendContactEmail } from "@/lib/actions";
 
 type FormState = {
   name: string;
   email: string;
+  phone: string;
   businessType: string;
   message: string;
 };
@@ -18,6 +20,7 @@ type FormErrors = Partial<Record<keyof FormState, string>>;
 const INITIAL_STATE: FormState = {
   name: "",
   email: "",
+  phone: "",
   businessType: "",
   message: "",
 };
@@ -49,24 +52,24 @@ function validate(state: FormState): FormErrors {
 export default function Contact() {
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
     if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (status === "submitting") return;
+
     const nextErrors = validate(form);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
     setStatus("submitting");
-    // Front-end only for now — wire this up to a real endpoint later.
-    setTimeout(() => {
-      setStatus("success");
-    }, 900);
+    const result = await sendContactEmail(form);
+    setStatus(result.success ? "success" : "error");
   }
 
   function resetForm() {
@@ -76,7 +79,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative bg-ink-950 px-6 py-28 sm:px-10 sm:py-36">
+    <section id="contact" className="relative bg-ink-900 px-6 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto max-w-content">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
@@ -101,11 +104,11 @@ export default function Contact() {
                 <div>
                   <span className="label">Email</span>
                   <a
-                    href="mailto:hello@koryucreatives.com"
+                    href="mailto:koryucreatives@gmail.com"
                     data-cursor="link"
                     className="mt-2 block text-lg text-ink-200 transition-colors hover:text-ink-50"
                   >
-                    hello@koryucreatives.com
+                    koryucreatives@gmail.com
                   </a>
                 </div>
                 <div>
@@ -128,7 +131,7 @@ export default function Contact() {
           </div>
 
           <Reveal delay={0.1} className="lg:col-span-7">
-            <div className="relative overflow-hidden rounded-3xl border border-ink-50/10 bg-ink-900/60 p-8 sm:p-10">
+            <div className="relative overflow-hidden rounded-3xl border border-ink-50/10 bg-ink-950/60 p-8 sm:p-10">
               <AnimatePresence mode="wait">
                 {status === "success" ? (
                   <motion.div
@@ -219,27 +222,44 @@ export default function Contact() {
                       </Field>
                     </div>
 
-                    <Field
-                      label="Business type"
-                      error={errors.businessType}
-                      htmlFor="contact-business"
-                    >
-                      <select
-                        id="contact-business"
-                        value={form.businessType}
-                        onChange={(e) => update("businessType", e.target.value)}
-                        className={clsx(fieldClasses(!!errors.businessType), "appearance-none")}
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                      <Field
+                        label="Phone (optional)"
+                        error={errors.phone}
+                        htmlFor="contact-phone"
                       >
-                        <option value="" disabled>
-                          Select one
-                        </option>
-                        {BUSINESS_TYPES.map((type) => (
-                          <option key={type} value={type}>
-                            {type}
+                        <input
+                          id="contact-phone"
+                          type="tel"
+                          value={form.phone}
+                          onChange={(e) => update("phone", e.target.value)}
+                          autoComplete="tel"
+                          className={fieldClasses(!!errors.phone)}
+                        />
+                      </Field>
+
+                      <Field
+                        label="Business type"
+                        error={errors.businessType}
+                        htmlFor="contact-business"
+                      >
+                        <select
+                          id="contact-business"
+                          value={form.businessType}
+                          onChange={(e) => update("businessType", e.target.value)}
+                          className={clsx(fieldClasses(!!errors.businessType), "appearance-none")}
+                        >
+                          <option value="" disabled>
+                            Select one
                           </option>
-                        ))}
-                      </select>
-                    </Field>
+                          {BUSINESS_TYPES.map((type) => (
+                            <option key={type} value={type}>
+                              {type}
+                            </option>
+                          ))}
+                        </select>
+                      </Field>
+                    </div>
 
                     <Field
                       label="Message"
@@ -258,6 +278,16 @@ export default function Contact() {
                     <MagneticButton type="submit" className="w-full sm:w-auto">
                       {status === "submitting" ? "Sending…" : "Send Message"}
                     </MagneticButton>
+
+                    {status === "error" && (
+                      <p role="alert" className="text-sm text-red-400">
+                        Something went wrong sending that. Please try again, or email us directly at{" "}
+                        <a href="mailto:koryucreatives@gmail.com" className="underline">
+                          koryucreatives@gmail.com
+                        </a>
+                        .
+                      </p>
+                    )}
                   </motion.form>
                 )}
               </AnimatePresence>
@@ -271,7 +301,7 @@ export default function Contact() {
 
 function fieldClasses(hasError: boolean) {
   return clsx(
-    "w-full rounded-xl border bg-ink-950/60 px-4 py-3 text-ink-50 outline-none transition-colors placeholder:text-ink-600",
+    "w-full rounded-xl border bg-ink-900/60 px-4 py-3 text-ink-50 outline-none transition-colors placeholder:text-ink-600",
     "focus:border-ink-50/60",
     hasError ? "border-red-400/50" : "border-ink-50/15"
   );

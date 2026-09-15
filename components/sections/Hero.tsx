@@ -70,8 +70,8 @@ export default function Hero() {
           <MagneticButton onClick={() => scrollToId("contact")}>
             Start Your Transformation
           </MagneticButton>
-          <MagneticButton variant="outline" onClick={() => scrollToId("work")}>
-            See Our Work
+          <MagneticButton variant="outline" onClick={() => scrollToId("services")}>
+            See Our Services
           </MagneticButton>
         </motion.div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion, type Variants } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -255,5 +256,47 @@ export function AdGrowthVisual() {
         transition={{ duration: 0.3, delay: 1.3 }}
       />
     </VisualFrame>
+  );
+}
+
+/** Social Media Management — cycles between the photo grid and the waveform. */
+export function SocialMediaVisual() {
+  const shouldReduceMotion = useReducedMotion();
+  const [which, setWhich] = useState<0 | 1>(0);
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+    const id = setInterval(() => setWhich((w) => (w === 0 ? 1 : 0)), 4500);
+    return () => clearInterval(id);
+  }, [shouldReduceMotion]);
+
+  return (
+    <div className="relative h-full w-full">
+      <AnimatePresence mode="wait">
+        {which === 0 ? (
+          <motion.div
+            key="photo"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="absolute inset-0"
+          >
+            <PhotoGridVisual />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="video"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="absolute inset-0"
+          >
+            <VideoWaveformVisual />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

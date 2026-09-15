@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #0b1220;
-  --color-fg: #f7f0de;
+  --color-bg: #0a0806;
+  --color-fg: #f6ecd8;
 }
 
 * {
@@ -38,13 +38,13 @@ h4 {
 }
 
 ::selection {
-  background: #f7f0de;
-  color: #0b1220;
+  background: #f6ecd8;
+  color: #0a0806;
 }
 
 /* Keyboard focus states — always visible, never suppressed */
 :focus-visible {
-  outline: 1px solid #f7f0de;
+  outline: 1px solid #f6ecd8;
   outline-offset: 4px;
 }
 
@@ -62,7 +62,7 @@ h4 {
   letter-spacing: 0.35em;
   font-size: 0.6875rem;
   font-weight: 500;
-  color: #a79e85;
+  color: #ab9370;
 }
 
 /* Grain texture overlay — CSS-only, no image asset */
@@ -78,20 +78,9 @@ h4 {
   mix-blend-mode: overlay;
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 28s linear infinite;
-}
-
-.marquee-row:hover .marquee-track {
-  animation-play-state: paused;
-}
-
 /* Respect reduced-motion as a global safety net for CSS-driven animation */
 @media (prefers-reduced-motion: reduce) {
-  .grain,
-  .marquee-track {
+  .grain {
     animation: none !important;
   }
 

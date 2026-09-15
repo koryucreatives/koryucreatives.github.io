@@ -6,17 +6,17 @@ const config: Config = {
     extend: {
       colors: {
         ink: {
-          950: "#0b1220",
-          900: "#111a2e",
-          800: "#17233a",
-          700: "#223252",
-          600: "#3c4a68",
-          500: "#8c8570",
-          400: "#a79e85",
-          300: "#c4b99c",
-          200: "#ded2b3",
-          100: "#ede3c8",
-          50: "#f7f0de",
+          950: "#0a0806",
+          900: "#14100b",
+          800: "#1f1811",
+          700: "#2e2418",
+          600: "#4d3d28",
+          500: "#8f7a5c",
+          400: "#ab9370",
+          300: "#c7af8a",
+          200: "#ddcba8",
+          100: "#ebddc4",
+          50: "#f6ecd8",
         },
       },
       fontFamily: {
@@ -31,10 +31,6 @@ const config: Config = {
         content: "1440px",
       },
       keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
         grain: {
           "0%, 100%": { transform: "translate(0, 0)" },
           "10%": { transform: "translate(-5%, -8%)" },
@@ -53,7 +49,6 @@ const config: Config = {
         },
       },
       animation: {
-        marquee: "marquee 28s linear infinite",
         grain: "grain 8s steps(8) infinite",
         "spin-slow": "spinSlow 120s linear infinite",
       },

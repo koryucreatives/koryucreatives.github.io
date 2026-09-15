@@ -3,7 +3,6 @@ import Image from "next/image";
 const NAV_LINKS = [
   { label: "Story", id: "story" },
   { label: "Services", id: "services" },
-  { label: "Work", id: "work" },
   { label: "Process", id: "process" },
   { label: "Contact", id: "contact" },
 ];
@@ -14,7 +13,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-ink-50/10 bg-ink-950 px-6 py-16 sm:px-10">
+    <footer className="relative border-t border-ink-50/10 bg-ink-900 px-6 py-16 sm:px-10">
       <div className="mx-auto flex max-w-content flex-col gap-12 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex items-center gap-3">
           <Image

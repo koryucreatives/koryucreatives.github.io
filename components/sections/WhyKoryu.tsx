@@ -19,7 +19,7 @@ const POINTS = [
 
 export default function WhyKoryu() {
   return (
-    <section className="relative bg-ink-900 px-6 py-28 sm:px-10 sm:py-36">
+    <section className="relative bg-ink-950 px-6 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto max-w-content">
         <Reveal>
           <span className="label">Why KORYU</span>

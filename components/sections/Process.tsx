@@ -30,7 +30,7 @@ export default function Process() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="process" className="relative bg-ink-950 px-6 py-28 sm:px-10 sm:py-36">
+    <section id="process" className="relative bg-ink-900 px-6 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto max-w-content">
         <Reveal>
           <span className="label">How We Work</span>
@@ -57,7 +57,7 @@ export default function Process() {
             {STEPS.map((step, i) => (
               <Reveal key={step.title} delay={i * 0.12}>
                 <div className="relative pt-10">
-                  <span className="absolute left-0 top-0 h-[13px] w-[13px] -translate-y-1/2 rounded-full border-2 border-ink-50 bg-ink-950" />
+                  <span className="absolute left-0 top-0 h-[13px] w-[13px] -translate-y-1/2 rounded-full border-2 border-ink-50 bg-ink-900" />
                   <span className="font-display text-xs text-ink-500">
                     0{i + 1}
                   </span>
@@ -89,7 +89,7 @@ export default function Process() {
             {STEPS.map((step, i) => (
               <Reveal key={step.title} delay={i * 0.08}>
                 <div className="relative pl-10">
-                  <span className="absolute left-0 top-1 h-[13px] w-[13px] rounded-full border-2 border-ink-50 bg-ink-950" />
+                  <span className="absolute left-0 top-1 h-[13px] w-[13px] rounded-full border-2 border-ink-50 bg-ink-900" />
                   <span className="font-display text-xs text-ink-500">
                     0{i + 1}
                   </span>

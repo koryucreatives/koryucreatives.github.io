@@ -10,7 +10,6 @@ import MagneticButton from "@/components/ui/MagneticButton";
 const NAV_LINKS = [
   { label: "Story", id: "story" },
   { label: "Services", id: "services" },
-  { label: "Work", id: "work" },
   { label: "Process", id: "process" },
   { label: "Contact", id: "contact" },
 ];

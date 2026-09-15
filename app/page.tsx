@@ -3,7 +3,6 @@ import Hero from "@/components/sections/Hero";
 import Story from "@/components/sections/Story";
 import Bridge from "@/components/sections/Bridge";
 import Services from "@/components/sections/Services";
-import Work from "@/components/sections/Work";
 import Process from "@/components/sections/Process";
 import WhyKoryu from "@/components/sections/WhyKoryu";
 import Contact from "@/components/sections/Contact";
@@ -12,10 +11,9 @@ import Marquee from "@/components/ui/Marquee";
 
 const SERVICE_TAGS = [
   "Website Design",
-  "Content Creation",
+  "Photo Editing",
   "Video Editing",
-  "Paid Ad Management",
-  "Brand Consistency",
+  "Ad Marketing",
   "Digital Presence",
 ];
 
@@ -29,7 +27,6 @@ export default function Home() {
         <Story />
         <Bridge />
         <Services />
-        <Work />
         <Process />
         <WhyKoryu />
         <Contact />
