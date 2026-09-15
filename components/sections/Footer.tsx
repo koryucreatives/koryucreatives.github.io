@@ -7,8 +7,6 @@ const NAV_LINKS = [
   { label: "Contact", id: "contact" },
 ];
 
-const SOCIALS = ["Instagram", "LinkedIn", "TikTok"];
-
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -45,19 +43,6 @@ export default function Footer() {
             </a>
           ))}
         </nav>
-
-        <div className="flex gap-5">
-          {SOCIALS.map((social) => (
-            <a
-              key={social}
-              href="#"
-              data-cursor="link"
-              className="text-sm text-ink-400 transition-colors hover:text-ink-50"
-            >
-              {social}
-            </a>
-          ))}
-        </div>
       </div>
 
       <div className="mx-auto mt-12 flex max-w-content flex-col gap-2 border-t border-ink-50/10 pt-8 text-xs text-ink-600 sm:flex-row sm:items-center sm:justify-between">

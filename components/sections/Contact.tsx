@@ -111,21 +111,6 @@ export default function Contact() {
                     contactus@koryucreatives.com
                   </a>
                 </div>
-                <div>
-                  <span className="label">Elsewhere</span>
-                  <div className="mt-2 flex gap-5">
-                    {["Instagram", "LinkedIn", "TikTok"].map((social) => (
-                      <a
-                        key={social}
-                        href="#"
-                        data-cursor="link"
-                        className="text-sm text-ink-300 underline decoration-ink-600 underline-offset-4 transition-colors hover:text-ink-50"
-                      >
-                        {social}
-                      </a>
-                    ))}
-                  </div>
-                </div>
               </div>
             </Reveal>
           </div>
