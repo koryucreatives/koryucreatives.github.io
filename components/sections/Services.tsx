@@ -7,6 +7,11 @@ import {
   WebsiteVisual,
   SocialMediaVisual,
   AdGrowthVisual,
+  BrandingVisual,
+  SocialManagementVisual,
+  SEOVisual,
+  AutomationVisual,
+  EcommerceVisual,
 } from "@/components/ui/ServiceVisuals";
 
 type Service = {
@@ -24,7 +29,7 @@ const SERVICES: Service[] = [
     visual: WebsiteVisual,
   },
   {
-    name: "Video & Photo Editing for Your Socials",
+    name: "Video Editing and Content",
     short: "Content that looks like one brand, in every format.",
     why: "Your feed is often the first thing a potential customer sees before they ever visit. We shoot, edit, and manage your photo and video content, so every post looks consistent, current, and credible.",
     visual: SocialMediaVisual,
@@ -37,6 +42,39 @@ const SERVICES: Service[] = [
   },
 ];
 
+const OTHER_SERVICES: Service[] = [
+  {
+    name: "Branding & Graphic Design",
+    short: "A visual identity people actually remember.",
+    why: "From logo to full brand system, we build the visual language your business runs on.",
+    visual: BrandingVisual,
+  },
+  {
+    name: "Social Media Management",
+    short: "A consistent presence, without the daily lift.",
+    why: "We plan, post, and manage your socials so your presence stays consistent without eating your week.",
+    visual: SocialManagementVisual,
+  },
+  {
+    name: "SEO & Local Growth",
+    short: "Found first, by the customers near you.",
+    why: "We optimize your search presence and local listings so nearby customers find you before the competition.",
+    visual: SEOVisual,
+  },
+  {
+    name: "Automation & AI Solutions",
+    short: "Fewer manual steps, faster turnaround.",
+    why: "We automate the repetitive parts of your workflow so your team spends time on what actually needs them.",
+    visual: AutomationVisual,
+  },
+  {
+    name: "E-commerce & Online Stores",
+    short: "A store that sells while you sleep.",
+    why: "We design and build online stores that make browsing effortless and checkout even easier.",
+    visual: EcommerceVisual,
+  },
+];
+
 export default function Services() {
   return (
     <section id="services" className="relative bg-ink-950 px-6 py-28 sm:px-10 sm:py-36">
@@ -46,7 +84,7 @@ export default function Services() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="mt-6 max-w-2xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
-            Three services. Build the mix you need.
+            Multiple services, take your pick.
           </h2>
         </Reveal>
         <Reveal delay={0.08}>
@@ -90,8 +128,54 @@ export default function Services() {
           })}
         </RevealGroup>
 
+        <Reveal delay={0.12}>
+          <span className="mt-20 block font-body text-[0.6875rem] font-medium uppercase tracking-widest2 text-accent-400">
+            Other Services We Offer
+          </span>
+        </Reveal>
         <Reveal delay={0.15}>
-          <div className="mt-6 flex flex-col items-center gap-6 rounded-2xl border border-ink-50/10 bg-ink-900/60 p-8 text-center sm:flex-row sm:justify-between sm:p-10 sm:text-left">
+          <p className="mt-5 max-w-xl text-ink-400">
+            Round out the core with whatever else your business needs.
+          </p>
+        </Reveal>
+
+        <RevealGroup
+          className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5"
+          stagger={0.08}
+        >
+          {OTHER_SERVICES.map((s, i) => {
+            const Visual = s.visual;
+            return (
+              <RevealItem key={s.name} className="group h-full">
+                <div className="relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-accent-50/10 bg-gradient-to-br from-accent-800 via-accent-900 to-accent-950 transition-transform duration-500 group-hover:scale-[1.02]">
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-5 top-4 font-display text-sm text-accent-50/40"
+                  >
+                    0{i + 1}
+                  </span>
+                  <div className="h-36 sm:h-40">
+                    <Visual />
+                  </div>
+                  <div className="flex-1 p-5 sm:p-6">
+                    <h3 className="font-display text-lg font-medium text-accent-50">
+                      {s.name}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-accent-200">
+                      {s.short}
+                    </p>
+                    <p className="mt-3 text-xs leading-relaxed text-accent-100/60">
+                      {s.why}
+                    </p>
+                  </div>
+                </div>
+              </RevealItem>
+            );
+          })}
+        </RevealGroup>
+
+        <Reveal delay={0.15}>
+          <div className="mt-16 flex flex-col items-center gap-6 rounded-2xl border border-ink-50/10 bg-ink-900/60 p-8 text-center sm:flex-row sm:justify-between sm:p-10 sm:text-left">
             <div>
               <h3 className="font-display text-xl font-medium text-ink-50 sm:text-2xl">
                 Want to customise your needs?

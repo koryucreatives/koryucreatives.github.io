@@ -15,6 +15,11 @@ const SERVICE_TAGS = [
   "Video Editing",
   "Ad Marketing",
   "Digital Presence",
+  "Branding",
+  "Social Media Management",
+  "SEO & Local Growth",
+  "Automation & AI",
+  "E-commerce",
 ];
 
 export default function Home() {
