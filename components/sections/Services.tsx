@@ -83,8 +83,8 @@ export default function Services() {
           <span className="label">What We Do</span>
         </Reveal>
         <Reveal delay={0.05} className="text-center">
-          <h2 className="mx-auto mt-6 max-w-2xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
-            Multiple services, take your pick.
+          <h2 className="mx-auto mt-6 whitespace-normal font-display text-[clamp(1.6rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50 sm:whitespace-nowrap">
+            Multiple services, take your pick!!
           </h2>
         </Reveal>
         <Reveal delay={0.08} className="text-center">
