@@ -36,8 +36,10 @@ export default function Process() {
           <span className="label">How We Work</span>
         </Reveal>
         <Reveal delay={0.05} className="text-center">
-          <h2 className="mx-auto mt-6 max-w-xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
-            Five steps. No disconnected handoffs.
+          <h2 className="mx-auto mt-6 font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
+            Five steps.
+            <br />
+            No disconnected handoffs.
           </h2>
         </Reveal>
 
