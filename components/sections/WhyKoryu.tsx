@@ -5,7 +5,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 const POINTS = [
   {
     title: "One team, zero guesswork",
-    copy: "The people building your site talk daily to the people shooting your content and running your ads, because they're the same team, not five inboxes you're managing yourself.",
+    copy: "The people building your site talk daily to the people editing your content and running your ads, because they're the same team, not five inboxes you're managing yourself.",
   },
   {
     title: "One story, every platform",
@@ -21,11 +21,11 @@ export default function WhyKoryu() {
   return (
     <section className="relative bg-ink-950 px-6 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto max-w-content">
-        <Reveal>
+        <Reveal className="text-center">
           <span className="label">Why KORYU</span>
         </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-6 max-w-xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
+        <Reveal delay={0.05} className="text-center">
+          <h2 className="mx-auto mt-6 max-w-xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
             Not a checklist of services. A single point of ownership.
           </h2>
         </Reveal>

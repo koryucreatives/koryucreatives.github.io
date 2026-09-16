@@ -12,7 +12,7 @@ const OLD_WAY = [
 
 const KORYU_WAY = [
   "Website Design & Development",
-  "Video & Photo Editing for Your Socials",
+  "Video Editing and Content",
   "Ad Marketing",
 ];
 
@@ -24,18 +24,18 @@ export default function Bridge() {
       </div>
 
       <div className="relative mx-auto max-w-content">
-        <Reveal>
+        <Reveal className="text-center">
           <span className="label">The Bridge</span>
         </Reveal>
 
-        <Reveal delay={0.05}>
-          <h2 className="mt-6 max-w-2xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
+        <Reveal delay={0.05} className="text-center">
+          <h2 className="mx-auto mt-6 max-w-2xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
             One team. One story.
           </h2>
         </Reveal>
 
-        <Reveal delay={0.08}>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-300">
+        <Reveal delay={0.08} className="text-center">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-300">
             KORYU exists because that gap shouldn&rsquo;t be normal: one team,
             working from the same brief, instead of three people who&rsquo;ve
             never spoken.

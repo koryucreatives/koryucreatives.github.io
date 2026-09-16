@@ -31,7 +31,7 @@ const SERVICES: Service[] = [
   {
     name: "Video Editing and Content",
     short: "Content that looks like one brand, in every format.",
-    why: "Your feed is often the first thing a potential customer sees before they ever visit. We shoot, edit, and manage your photo and video content, so every post looks consistent, current, and credible.",
+    why: "Your feed is often the first thing a potential customer sees before they ever visit. We edit and manage the photo and video content you provide, so every post looks consistent, current, and credible.",
     visual: SocialMediaVisual,
   },
   {
@@ -79,16 +79,16 @@ export default function Services() {
   return (
     <section id="services" className="relative bg-ink-950 px-6 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto max-w-content">
-        <Reveal>
+        <Reveal className="text-center">
           <span className="label">What We Do</span>
         </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-6 max-w-2xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
+        <Reveal delay={0.05} className="text-center">
+          <h2 className="mx-auto mt-6 max-w-2xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
             Multiple services, take your pick.
           </h2>
         </Reveal>
-        <Reveal delay={0.08}>
-          <p className="mt-5 max-w-xl text-ink-400">
+        <Reveal delay={0.08} className="text-center">
+          <p className="mx-auto mt-5 max-w-xl text-ink-400">
             Mix and match, or keep it simple. Every service works on its own or together.
           </p>
         </Reveal>
@@ -128,13 +128,13 @@ export default function Services() {
           })}
         </RevealGroup>
 
-        <Reveal delay={0.12}>
+        <Reveal delay={0.12} className="text-center">
           <span className="mt-20 block font-body text-[0.6875rem] font-medium uppercase tracking-widest2 text-accent-400">
             Other Services We Offer
           </span>
         </Reveal>
-        <Reveal delay={0.15}>
-          <p className="mt-5 max-w-xl text-ink-400">
+        <Reveal delay={0.15} className="text-center">
+          <p className="mx-auto mt-5 max-w-xl text-ink-400">
             Round out the core with whatever else your business needs.
           </p>
         </Reveal>

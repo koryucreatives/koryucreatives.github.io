@@ -159,7 +159,7 @@ export default function Story() {
   return (
     <section id="story" className="relative bg-ink-950 px-6 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto max-w-3xl sm:max-w-5xl">
-        <Reveal>
+        <Reveal className="text-center">
           <span className="label">The Gap</span>
         </Reveal>
 

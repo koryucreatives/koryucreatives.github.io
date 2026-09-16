@@ -14,7 +14,7 @@ const STEPS = [
   },
   {
     title: "Build",
-    copy: "Our team builds the site, shoots and edits the content, and sets up the ad campaigns: in parallel, not in sequence.",
+    copy: "Our team builds the site, edits the content you provide, and sets up the ad campaigns: in parallel, not in sequence.",
   },
   {
     title: "Launch",
@@ -32,11 +32,11 @@ export default function Process() {
   return (
     <section id="process" className="relative bg-ink-900 px-6 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto max-w-content">
-        <Reveal>
+        <Reveal className="text-center">
           <span className="label">How We Work</span>
         </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-6 max-w-xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
+        <Reveal delay={0.05} className="text-center">
+          <h2 className="mx-auto mt-6 max-w-xl font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
             Five steps. No disconnected handoffs.
           </h2>
         </Reveal>
