@@ -11,31 +11,18 @@ import {
 import clsx from "clsx";
 import { Reveal } from "@/components/ui/Reveal";
 
-// A rod falls in vertically, topples over into a horizontal underline,
-// "THE GAP" pops out from behind it, then the bar drops away under its
-// own weight and disappears, leaving just the label. Plays once, on
-// scroll-in.
-const ROD_WIDTH = 5;
-const ROD_LENGTH = 72;
-
+// A fat bar drops in, bounces once, then shrinks into a thin underline
+// while "THE GAP" pops out from behind it. Plays once, on scroll-in.
 const gapBarVariants: Variants = {
-  hidden: { y: -140, rotate: 0, opacity: 1 },
+  hidden: { y: -56, opacity: 0, scaleY: 1 },
   visible: {
-    y: [-140, 0, -5, 0, 0, 0, 0, 56],
-    rotate: [0, 0, 0, 0, 95, 90, 90, 90],
-    opacity: [1, 1, 1, 1, 1, 1, 1, 0],
+    y: [-56, 6, 0, 0],
+    opacity: [0, 1, 1, 1],
+    scaleY: [1, 1, 1, 0.12],
     transition: {
-      duration: 1.7,
-      times: [0, 0.28, 0.33, 0.38, 0.55, 0.68, 0.82, 1],
-      ease: [
-        "easeIn",
-        "easeOut",
-        "easeIn",
-        "easeOut",
-        "easeOut",
-        "linear",
-        "easeIn",
-      ],
+      duration: 1,
+      times: [0, 0.4, 0.55, 1],
+      ease: ["easeIn", "easeOut", "easeInOut"],
     },
   },
 };
@@ -46,8 +33,8 @@ const gapTextVariants: Variants = {
     opacity: [0, 0, 1, 1],
     scale: [0.4, 0.4, 1.15, 1],
     transition: {
-      duration: 1.7,
-      times: [0, 0.58, 0.7, 0.8],
+      duration: 1,
+      times: [0, 0.55, 0.8, 1],
       ease: ["linear", "easeOut", "easeOut"],
     },
   },
@@ -57,7 +44,15 @@ function GapLabel() {
   const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
-    return <span className="label">The Gap</span>;
+    return (
+      <span className="relative inline-block px-1">
+        <span
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-[2px] bg-ink-50"
+        />
+        <span className="label relative z-10 inline-block">The Gap</span>
+      </span>
+    );
   }
 
   return (
@@ -67,21 +62,12 @@ function GapLabel() {
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
     >
-      <span
+      <motion.span
         aria-hidden="true"
-        className="absolute left-1/2 top-1/2"
-        style={{
-          width: ROD_WIDTH,
-          height: ROD_LENGTH,
-          marginLeft: -ROD_WIDTH / 2,
-          marginTop: -ROD_LENGTH / 2,
-        }}
-      >
-        <motion.span
-          className="block h-full w-full rounded-[2px] bg-ink-50"
-          variants={gapBarVariants}
-        />
-      </span>
+        className="absolute inset-x-0 rounded-[2px] bg-ink-50"
+        style={{ top: -10, bottom: -10, transformOrigin: "bottom" }}
+        variants={gapBarVariants}
+      />
       <motion.span
         className="label relative z-10 inline-block"
         variants={gapTextVariants}
