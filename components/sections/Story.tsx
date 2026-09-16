@@ -6,9 +6,77 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
+  type Variants,
 } from "framer-motion";
 import clsx from "clsx";
 import { Reveal } from "@/components/ui/Reveal";
+
+// A fat bar drops in, bounces once, then shrinks into a thin underline
+// while "THE GAP" pops out from behind it. Plays once, on scroll-in.
+const gapBarVariants: Variants = {
+  hidden: { y: -56, opacity: 0, scaleY: 1 },
+  visible: {
+    y: [-56, 6, 0, 0],
+    opacity: [0, 1, 1, 1],
+    scaleY: [1, 1, 1, 0.12],
+    transition: {
+      duration: 1,
+      times: [0, 0.4, 0.55, 1],
+      ease: ["easeIn", "easeOut", "easeInOut"],
+    },
+  },
+};
+
+const gapTextVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.4 },
+  visible: {
+    opacity: [0, 0, 1, 1],
+    scale: [0.4, 0.4, 1.15, 1],
+    transition: {
+      duration: 1,
+      times: [0, 0.55, 0.8, 1],
+      ease: ["linear", "easeOut", "easeOut"],
+    },
+  },
+};
+
+function GapLabel() {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return (
+      <span className="relative inline-block px-1">
+        <span
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-[2px] bg-ink-50"
+        />
+        <span className="label relative z-10 inline-block">The Gap</span>
+      </span>
+    );
+  }
+
+  return (
+    <motion.span
+      className="relative inline-block px-1"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+    >
+      <motion.span
+        aria-hidden="true"
+        className="absolute inset-x-0 rounded-[2px] bg-ink-50"
+        style={{ top: -10, bottom: -10, transformOrigin: "bottom" }}
+        variants={gapBarVariants}
+      />
+      <motion.span
+        className="label relative z-10 inline-block"
+        variants={gapTextVariants}
+      >
+        The Gap
+      </motion.span>
+    </motion.span>
+  );
+}
 
 const BEATS = [
   {
@@ -159,9 +227,9 @@ export default function Story() {
   return (
     <section id="story" className="relative bg-ink-950 px-6 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto max-w-3xl sm:max-w-5xl">
-        <Reveal className="text-center">
-          <span className="label">The Gap</span>
-        </Reveal>
+        <div className="text-center">
+          <GapLabel />
+        </div>
 
         <Reveal delay={0.05}>
           <h2 className="mt-6 text-center font-display text-[clamp(1.9rem,4.2vw,3.25rem)] font-semibold leading-[1.1] tracking-tight text-ink-50">
